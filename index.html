@@ -85,7 +85,7 @@
             <h3>Vitaj, <span id="user-name"></span>!</h3>
             <p>Peňažný stav: $<span id="user-money">0</span></p>
             <div id="firm-options">
-                <button onclick="createFirm()">Vytvoriť firmu ($1M)</button>
+                <button onclick="createFirm()">Vytvoriť firmu</button>
                 <button onclick="joinFirm()">Pripojiť sa k firme</button>
             </div>
 
@@ -169,30 +169,25 @@
             document.getElementById("user-money").textContent = currentUser.money;
         }
 
-        // Create a new firm
+        // Create a new firm (free)
         function createFirm() {
-            if (currentUser.money >= 1000000) {
-                fetch(`${apiUrl}/users/${currentUser.id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        ...currentUser,
-                        money: currentUser.money - 1000000,
-                        company: "Nová Firma"
-                    })
+            fetch(`${apiUrl}/users/${currentUser.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...currentUser,
+                    company: "Nová Firma"
                 })
-                .then(response => response.json())
-                .then(data => {
-                    currentUser = data;
-                    alert("Firma bola vytvorená!");
-                    document.getElementById("user-money").textContent = currentUser.money;
-                })
-                .catch(error => console.error('Chyba pri vytváraní firmy:', error));
-            } else {
-                alert("Nemáš dostatok peňazí na vytvorenie firmy!");
-            }
+            })
+            .then(response => response.json())
+            .then(data => {
+                currentUser = data;
+                alert("Firma bola vytvorená!");
+                document.getElementById("user-money").textContent = currentUser.money;
+            })
+            .catch(error => console.error('Chyba pri vytváraní firmy:', error));
         }
 
         // Join an existing firm
