@@ -32,8 +32,8 @@
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
             text-align: center;
             text-transform: uppercase;
             font-weight: 600;
@@ -44,17 +44,17 @@
         /* Kontajner pre karty */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); /* Znížili sme min. šírku karty */
+            gap: 25px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px; /* Znížili sme max. šírku kontajnera */
         }
 
         /* Kartový štýl */
         .card {
             background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
@@ -68,7 +68,7 @@
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 180px; /* Znížili sme výšku obrázka */
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -78,21 +78,21 @@
         }
 
         .card-content {
-            padding: 20px;
+            padding: 15px; /* Znížili sme padding pre menší vzhľad */
             text-align: center;
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             font-weight: 600;
             color: #333;
         }
 
         .card p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .card-button {
@@ -100,8 +100,8 @@
             background: #6e7bff;
             color: #fff;
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 10px 20px; /* Znížili sme padding */
+            border-radius: 25px; /* Zmenšili sme okraje tlačidla */
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -131,7 +131,7 @@
         /* Responzívne zobrazenie */
         @media screen and (max-width: 768px) {
             .card-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Karty sa budú ešte viac zmenšovať */
             }
         }
     </style>
@@ -141,9 +141,9 @@
     <div class="main-content">
         <h1>Vitajte v Modernom Kartovom Rozhraní</h1>
         <div class="card-container">
-            <!-- Karty, ktoré reprezentujú sekcie -->
+            <!-- Karty -->
             <div class="card" onclick="showSection('home')">
-                <img src="https://via.placeholder.com/320x200/6e7bff" alt="Home">
+                <img src="https://via.placeholder.com/270x180/6e7bff" alt="Home">
                 <div class="card-content">
                     <h3>Domov</h3>
                     <p>Vitajte v našej aplikácii. Tu nájdete všetky informácie!</p>
@@ -152,7 +152,7 @@
             </div>
 
             <div class="card" onclick="showSection('about')">
-                <img src="https://via.placeholder.com/320x200/9f8cff" alt="About">
+                <img src="https://via.placeholder.com/270x180/9f8cff" alt="About">
                 <div class="card-content">
                     <h3>O nás</h3>
                     <p>Dozviete sa viac o našich projektoch a tímovej práci.</p>
@@ -161,7 +161,7 @@
             </div>
 
             <div class="card" onclick="showSection('services')">
-                <img src="https://via.placeholder.com/320x200/4b5dff" alt="Services">
+                <img src="https://via.placeholder.com/270x180/4b5dff" alt="Services">
                 <div class="card-content">
                     <h3>Služby</h3>
                     <p>Prehľad našich najnovších služieb a ponúk.</p>
@@ -170,7 +170,7 @@
             </div>
 
             <div class="card" onclick="showSection('contact')">
-                <img src="https://via.placeholder.com/320x200/3b44c6" alt="Contact">
+                <img src="https://via.placeholder.com/270x180/3b44c6" alt="Contact">
                 <div class="card-content">
                     <h3>Kontakt</h3>
                     <p>Rýchly spôsob, ako sa s nami spojiť. Neváhajte nás kontaktovať!</p>
@@ -179,7 +179,7 @@
             </div>
         </div>
 
-        <!-- Sekcie, ktoré sa zobrazia po kliknutí na kartu -->
+        <!-- Sekcie -->
         <div id="home" class="section" style="display: none;">
             <h2>Domov</h2>
             <p>Vitajte na našej hlavnej stránke. Tu nájdete všetky informácie, ktoré potrebujete.</p>
@@ -207,7 +207,7 @@
                 section.style.display = 'none';
             });
 
-            // Zobraziť sekciu, na ktorú klikol používateľ
+            // Zobraziť sekciu
             const section = document.getElementById(sectionId);
             section.style.display = 'block';
         }
