@@ -16,79 +16,39 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
-            padding: 0;
-            margin: 0;
             color: #333;
         }
 
-        /* Navigácia */
-        .navbar {
-            background-color: #333;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .navbar ul {
-            list-style: none;
+        .main-content {
+            padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
         }
 
-        .navbar ul li {
-            margin: 0 20px;
-        }
-
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 10px 15px;
-            transition: background-color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            background-color: #575757;
-            border-radius: 5px;
-        }
-
-        /* Hlavný obsah */
-        .main-content {
-            margin-top: 80px; /* Odstránenie krytia navigácie */
-            padding: 20px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        /* Kartový layout */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .card {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            text-align: center;
             cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .card img {
@@ -107,95 +67,95 @@
         .card p {
             font-size: 16px;
             color: #555;
+            margin-bottom: 15px;
         }
 
-        /* Responzívne zobrazenie */
-        @media screen and (max-width: 768px) {
-            .navbar ul {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-            }
-        }
-
-        /* Tlačidlo v karte */
         .card-button {
-            display: inline-block;
             padding: 10px 20px;
             background-color: #333;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 15px;
-            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         .card-button:hover {
             background-color: #575757;
         }
+
+        /* Responzívne zobrazenie */
+        @media screen and (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigačná lišta -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#home">Domov</a></li>
-            <li><a href="#about">O nás</a></li>
-            <li><a href="#services">Služby</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-    </nav>
-
     <!-- Hlavný obsah -->
     <div class="main-content">
-        <section id="home" class="section">
-            <h2>Domov</h2>
-            <div class="card-container">
-                <!-- Karty -->
-                <div class="card">
-                    <img src="https://via.placeholder.com/280" alt="Card Image">
-                    <h3>Card 1</h3>
-                    <p>Popis karty 1. Môžete pridať informácie o aplikácii alebo produkte.</p>
-                    <a href="#" class="card-button">Zisti viac</a>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/280" alt="Card Image">
-                    <h3>Card 2</h3>
-                    <p>Popis karty 2. Môžete pridať informácie o inej funkcii alebo sekcii.</p>
-                    <a href="#" class="card-button">Zisti viac</a>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/280" alt="Card Image">
-                    <h3>Card 3</h3>
-                    <p>Popis karty 3. Môžete pridať informácie o ďalšej sekcii.</p>
-                    <a href="#" class="card-button">Zisti viac</a>
-                </div>
+        <h1>Vitajte v Modernom Kartovom Rozhraní</h1>
+        <div class="card-container">
+            <!-- Karty, ktoré reprezentujú sekcie -->
+            <div class="card" onclick="showSection('home')">
+                <img src="https://via.placeholder.com/280" alt="Home">
+                <h3>Domov</h3>
+                <p>Vitajte v našej aplikácii!</p>
+                <a href="#" class="card-button">Zisti viac</a>
             </div>
-        </section>
+            <div class="card" onclick="showSection('about')">
+                <img src="https://via.placeholder.com/280" alt="About">
+                <h3>O nás</h3>
+                <p>Dozviete sa viac o našich projektoch.</p>
+                <a href="#" class="card-button">Zisti viac</a>
+            </div>
+            <div class="card" onclick="showSection('services')">
+                <img src="https://via.placeholder.com/280" alt="Services">
+                <h3>Služby</h3>
+                <p>Prehľad našich služieb.</p>
+                <a href="#" class="card-button">Zisti viac</a>
+            </div>
+            <div class="card" onclick="showSection('contact')">
+                <img src="https://via.placeholder.com/280" alt="Contact">
+                <h3>Kontakt</h3>
+                <p>Kontaktujte nás pre viac informácií.</p>
+                <a href="#" class="card-button">Zisti viac</a>
+            </div>
+        </div>
 
-        <section id="about" class="section">
+        <!-- Sekcie, ktoré sa zobrazia po kliknutí na kartu -->
+        <div id="home" class="section" style="display: none;">
+            <h2>Domov</h2>
+            <p>Vitajte na našej hlavnej stránke. Tu nájdete všetky informácie, ktoré potrebujete.</p>
+        </div>
+        <div id="about" class="section" style="display: none;">
             <h2>O nás</h2>
-            <p>Informácie o vašej akadémii alebo aplikácii.</p>
-        </section>
-
-        <section id="services" class="section">
+            <p>Informácie o našej spoločnosti, našich hodnotách a cieľoch.</p>
+        </div>
+        <div id="services" class="section" style="display: none;">
             <h2>Služby</h2>
-            <p>Podrobnosti o službách, ktoré ponúkate.</p>
-        </section>
-
-        <section id="contact" class="section">
+            <p>Prehľad všetkých našich služieb, ktoré ponúkame našim klientom.</p>
+        </div>
+        <div id="contact" class="section" style="display: none;">
             <h2>Kontakt</h2>
-            <p>Informácie na kontaktovanie.</p>
-        </section>
+            <p>Informácie o tom, ako nás kontaktovať.</p>
+        </div>
     </div>
-    
+
     <script>
-        // JavaScript pre interakcie
-        // Môžete pridať dynamické funkcie, ako je zobrazenie detailu pri kliknutí na kartu
+        // Skript na zobrazenie sekcií po kliknutí na kartu
+        function showSection(sectionId) {
+            // Skryť všetky sekcie
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Zobraziť sekciu, na ktorú klikol používateľ
+            const section = document.getElementById(sectionId);
+            section.style.display = 'block';
+        }
     </script>
 </body>
 </html>
-
