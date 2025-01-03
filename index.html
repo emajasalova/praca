@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moderný Card Layout</title>
+    <title>Moderný Kartový Layout</title>
     <style>
-        /* Globálne štýly */
-        body {
-            font-family: 'Arial', sans-serif;
+        /* Reset štýlov pre lepší vzhľad */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #f4f4f4;
         }
 
-        /* Navigačná lišta */
+        /* Globálne štýly */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Navigácia */
         .navbar {
             background-color: #333;
             padding: 10px 0;
@@ -50,7 +57,7 @@
 
         /* Hlavný obsah */
         .main-content {
-            margin-top: 60px;
+            margin-top: 80px; /* Odstránenie krytia navigácie */
             padding: 20px;
         }
 
@@ -63,33 +70,38 @@
             margin-bottom: 20px;
         }
 
-        /* Karty */
+        /* Kartový layout */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .card {
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
         .card h3 {
             font-size: 20px;
-            margin: 10px 0;
+            margin-bottom: 10px;
         }
 
         .card p {
@@ -97,19 +109,32 @@
             color: #555;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
         /* Responzívne zobrazenie */
         @media screen and (max-width: 768px) {
             .navbar ul {
                 flex-direction: column;
+                text-align: center;
             }
 
             .navbar ul li {
                 margin: 10px 0;
             }
+        }
+
+        /* Tlačidlo v karte */
+        .card-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .card-button:hover {
+            background-color: #575757;
         }
     </style>
 </head>
@@ -131,19 +156,22 @@
             <div class="card-container">
                 <!-- Karty -->
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Card Image">
-                    <h3>Karta 1</h3>
-                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                    <img src="https://via.placeholder.com/280" alt="Card Image">
+                    <h3>Card 1</h3>
+                    <p>Popis karty 1. Môžete pridať informácie o aplikácii alebo produkte.</p>
+                    <a href="#" class="card-button">Zisti viac</a>
                 </div>
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Card Image">
-                    <h3>Karta 2</h3>
-                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                    <img src="https://via.placeholder.com/280" alt="Card Image">
+                    <h3>Card 2</h3>
+                    <p>Popis karty 2. Môžete pridať informácie o inej funkcii alebo sekcii.</p>
+                    <a href="#" class="card-button">Zisti viac</a>
                 </div>
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Card Image">
-                    <h3>Karta 3</h3>
-                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                    <img src="https://via.placeholder.com/280" alt="Card Image">
+                    <h3>Card 3</h3>
+                    <p>Popis karty 3. Môžete pridať informácie o ďalšej sekcii.</p>
+                    <a href="#" class="card-button">Zisti viac</a>
                 </div>
             </div>
         </section>
@@ -163,10 +191,11 @@
             <p>Informácie na kontaktovanie.</p>
         </section>
     </div>
-
+    
     <script>
-        // Prípadne JavaScript pre interakcie
-        // Ak by si chcel pridať efekt pri kliknutí na kartu alebo iné interakcie
+        // JavaScript pre interakcie
+        // Môžete pridať dynamické funkcie, ako je zobrazenie detailu pri kliknutí na kartu
     </script>
 </body>
 </html>
+
