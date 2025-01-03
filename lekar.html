@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lekárske RP</title>
+    <style>
+        /* Reset štýlov */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Globálne štýly */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .question-container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-container img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #45a049;
+        }
+
+        .option.incorrect {
+            background-color: #f44336;
+        }
+
+        .option.correct {
+            background-color: #4CAF50;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="question-container">
+        <img id="question-image" src="" alt="Lekárske obrázky">
+        <h2 id="question-text">Aká je správna odpoveď?</h2>
+        <div class="options-container" id="options">
+            <!-- Možnosti budú generované tu -->
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                image: "https://via.placeholder.com/800x300/ff7f7f",
+                question: "Osoba má zlomenú pravú ruku. Čo urobíme?",
+                options: [
+                    { text: "Skontrolujeme oxymetrom", correct: false },
+                    { text: "Dáme do fixačnej dlahy", correct: true },
+                    { text: "Zmeráme krvný tlak", correct: false },
+                    { text: "Dáme obklad na ruku", correct: false },
+                    { text: "Pokúsime sa ruku nastaviť", correct: false },
+                    { text: "Zavoláme sanitku", correct: true },
+                    { text: "Urobíme masáž rúk", correct: false },
+                    { text: "Skontrolujeme srdcový rytmus", correct: false },
+                    { text: "Aplikujeme ľad", correct: false },
+                    { text: "Odpočívame s pacientom", correct: false },
+                    { text: "Podávame lieky proti bolesti", correct: true },
+                    { text: "Zavedieme intravenóznu infúziu", correct: false }
+                ]
+            },
+            {
+                image: "https://via.placeholder.com/800x300/7fbfff",
+                question: "Osoba má popáleniny 2. stupňa. Čo urobíme?",
+                options: [
+                    { text: "Ponoríme do ľadovej vody", correct: false },
+                    { text: "Aplikujeme obväz", correct: true },
+                    { text: "Urobíme tlakový obväz", correct: false },
+                    { text: "Pokúsime sa rozmazať masť", correct: false },
+                    { text: "Odstúpime a počkáme na pomoc", correct: false },
+                    { text: "Aplikujeme studený obklad", correct: true },
+                    { text: "Zavoláme pohotovosť", correct: true },
+                    { text: "Pochováme ranu", correct: false },
+                    { text: "Podáme lieky proti bolesti", correct: true },
+                    { text: "Vytvoríme umelý dýchanie", correct: false },
+                    { text: "Použijeme žiadne ošetrenie", correct: false },
+                    { text: "Pokúsime sa popáleniny vyliečiť prírodnými metódami", correct: false }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            const imageElement = document.getElementById("question-image");
+            const questionTextElement = document.getElementById("question-text");
+            const optionsElement = document.getElementById("options");
+            const messageElement = document.getElementById("message");
+
+            imageElement.src = question.image;
+            questionTextElement.textContent = question.question;
+            optionsElement.innerHTML = "";
+
+            // Vygenerovanie možností
+            question.options.forEach(option => {
+                const optionElement = document.createElement("div");
+                optionElement.classList.add("option");
+                optionElement.textContent = option.text;
+                optionElement.addEventListener("click", () => handleAnswer(option));
+                optionsElement.appendChild(optionElement);
+            });
+
+            messageElement.textContent = "";
+        }
+
+        function handleAnswer(option) {
+            const options = document.querySelectorAll(".option");
+            options.forEach(opt => {
+                opt.classList.remove("correct", "incorrect");
+                if (opt.textContent === option.text) {
+                    if (option.correct) {
+                        opt.classList.add("correct");
+                        document.getElementById("message").textContent = "Správna odpoveď!";
+                    } else {
+                        opt.classList.add("incorrect");
+                        document.getElementById("message").textContent = "Nesprávna odpoveď. Skús to znova!";
+                    }
+                }
+            });
+        }
+
+        // Načítanie prvej otázky
+        loadQuestion();
+    </script>
+</body>
+</html>
