@@ -3,158 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mechanik - Opravy áut</title>
+    <title>Moderný Card Layout</title>
     <style>
-        * {
+        /* Globálne štýly */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f4f4f4;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
+        /* Navigačná lišta */
+        .navbar {
+            background-color: #333;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
-        .game-container {
-            max-width: 600px;
-            margin: 50px auto;
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
         }
 
-        #car-container {
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        /* Hlavný obsah */
+        .main-content {
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 24px;
             margin-bottom: 20px;
         }
 
-        #car {
+        /* Karty */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card img {
             width: 100%;
-            max-width: 500px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
         }
 
-        #tools-container {
-            margin: 20px 0;
+        .card h3 {
+            font-size: 20px;
+            margin: 10px 0;
         }
 
-        .tool {
-            padding: 10px 20px;
+        .card p {
             font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-            transition: background-color 0.3s ease;
+            color: #555;
         }
 
-        .tool:hover {
-            background-color: #45a049;
+        .card:hover {
+            transform: translateY(-10px);
         }
 
-        #status-container {
-            margin-top: 20px;
-            font-size: 18px;
-        }
+        /* Responzívne zobrazenie */
+        @media screen and (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+            }
 
-        #end-message {
-            display: none;
-        }
-
-        .hidden {
-            display: none;
+            .navbar ul li {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Mechanik - Opravy áut</h1>
-        <div id="car-container">
-            <img src="car.png" alt="Auto" id="car">
-        </div>
-        <div id="tools-container">
-            <button id="wrench" class="tool">Kľúč</button>
-            <button id="screwdriver" class="tool">Skrutkovač</button>
-            <button id="jack" class="tool">Domkraft</button>
-        </div>
-        <div id="job-container">
-            <p>Úloha: Opraviť koleso</p>
-        </div>
-        <div id="status-container">
-            <p>Peniaze: <span id="money">0</span></p>
-            <p>Čas: <span id="timer">30</span> sekúnd</p>
-        </div>
-        <div id="end-message" class="hidden">
-            <h2>Úloha splnená!</h2>
-            <button onclick="restartGame()">Začať znovu</button>
-        </div>
+    <!-- Navigačná lišta -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Domov</a></li>
+            <li><a href="#about">O nás</a></li>
+            <li><a href="#services">Služby</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hlavný obsah -->
+    <div class="main-content">
+        <section id="home" class="section">
+            <h2>Domov</h2>
+            <div class="card-container">
+                <!-- Karty -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/300" alt="Card Image">
+                    <h3>Karta 1</h3>
+                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300" alt="Card Image">
+                    <h3>Karta 2</h3>
+                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300" alt="Card Image">
+                    <h3>Karta 3</h3>
+                    <p>Popis karty. Tu môžete pridať detaily.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2>O nás</h2>
+            <p>Informácie o vašej akadémii alebo aplikácii.</p>
+        </section>
+
+        <section id="services" class="section">
+            <h2>Služby</h2>
+            <p>Podrobnosti o službách, ktoré ponúkate.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Kontakt</h2>
+            <p>Informácie na kontaktovanie.</p>
+        </section>
     </div>
+
     <script>
-        // Inicializácia premenných
-        let money = 0;
-        let timer = 30;
-        let interval;
-        let isTaskCompleted = false;
-
-        // Funkcia na spustenie časovača
-        function startTimer() {
-            interval = setInterval(function() {
-                if (timer > 0) {
-                    timer--;
-                    document.getElementById('timer').textContent = timer;
-                } else {
-                    clearInterval(interval);
-                    gameOver();
-                }
-            }, 1000);
-        }
-
-        // Funkcia na dokončenie úlohy
-        function completeTask() {
-            money += 100;  // Za dokončenie úlohy dostane hráč 100 peňazí
-            document.getElementById('money').textContent = money;
-            document.getElementById('end-message').style.display = 'block';
-            isTaskCompleted = true;
-        }
-
-        // Funkcia na zobrazenie konca hry
-        function gameOver() {
-            alert("Čas vypršal! Skús to znova.");
-            restartGame();
-        }
-
-        // Funkcia na resetovanie hry
-        function restartGame() {
-            money = 0;
-            timer = 30;
-            document.getElementById('money').textContent = money;
-            document.getElementById('timer').textContent = timer;
-            document.getElementById('end-message').style.display = 'none';
-            isTaskCompleted = false;
-            startTimer();
-        }
-
-        // Funkcia na prácu s nástrojmi
-        document.getElementById('wrench').addEventListener('click', function() {
-            if (!isTaskCompleted) {
-                alert("Používate kľúč na opravu!");
-                completeTask();
-            }
-        });
-
-        document.getElementById('screwdriver').addEventListener('click', function() {
-            if (!isTaskCompleted) {
-                alert("Používate skrutkovač!");
-            }
-        });
-
-        document.getElementById('jack').addEventListener('click', function() {
-            if (!isTaskCompleted) {
-                alert("Používate domkraft!");
-            }
-        });
-
-        // Spustenie časovača na začiatku hry
-        startTimer();
+        // Prípadne JavaScript pre interakcie
+        // Ak by si chcel pridať efekt pri kliknutí na kartu alebo iné interakcie
     </script>
 </body>
 </html>
-
