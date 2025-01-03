@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moderný Kartový Layout</title>
     <style>
-        /* Reset štýlov pre lepší vzhľad */
+        /* Reset štýlov */
         * {
             margin: 0;
             padding: 0;
@@ -14,74 +14,118 @@
 
         /* Globálne štýly */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        .main-content {
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6e7bff, #9f8cff);
+            color: #fff;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
+            overflow: hidden;
         }
 
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        /* Kontajner pre karty */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
             width: 100%;
             max-width: 1200px;
         }
 
+        /* Kartový štýl */
         .card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+            transform: scale(1);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card img {
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
         }
 
         .card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #333;
         }
 
         .card p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
         }
 
         .card-button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
+            display: inline-block;
+            background: #6e7bff;
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
         }
 
         .card-button:hover {
-            background-color: #575757;
+            background-color: #5a6ec7;
+        }
+
+        /* Animácie */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-container .card {
+            animation: fadeInUp 0.6s ease-out;
         }
 
         /* Responzívne zobrazenie */
@@ -99,28 +143,39 @@
         <div class="card-container">
             <!-- Karty, ktoré reprezentujú sekcie -->
             <div class="card" onclick="showSection('home')">
-                <img src="https://via.placeholder.com/280" alt="Home">
-                <h3>Domov</h3>
-                <p>Vitajte v našej aplikácii!</p>
-                <a href="#" class="card-button">Zisti viac</a>
+                <img src="https://via.placeholder.com/320x200/6e7bff" alt="Home">
+                <div class="card-content">
+                    <h3>Domov</h3>
+                    <p>Vitajte v našej aplikácii. Tu nájdete všetky informácie!</p>
+                    <a href="#" class="card-button">Zisti viac</a>
+                </div>
             </div>
+
             <div class="card" onclick="showSection('about')">
-                <img src="https://via.placeholder.com/280" alt="About">
-                <h3>O nás</h3>
-                <p>Dozviete sa viac o našich projektoch.</p>
-                <a href="#" class="card-button">Zisti viac</a>
+                <img src="https://via.placeholder.com/320x200/9f8cff" alt="About">
+                <div class="card-content">
+                    <h3>O nás</h3>
+                    <p>Dozviete sa viac o našich projektoch a tímovej práci.</p>
+                    <a href="#" class="card-button">Zisti viac</a>
+                </div>
             </div>
+
             <div class="card" onclick="showSection('services')">
-                <img src="https://via.placeholder.com/280" alt="Services">
-                <h3>Služby</h3>
-                <p>Prehľad našich služieb.</p>
-                <a href="#" class="card-button">Zisti viac</a>
+                <img src="https://via.placeholder.com/320x200/4b5dff" alt="Services">
+                <div class="card-content">
+                    <h3>Služby</h3>
+                    <p>Prehľad našich najnovších služieb a ponúk.</p>
+                    <a href="#" class="card-button">Zisti viac</a>
+                </div>
             </div>
+
             <div class="card" onclick="showSection('contact')">
-                <img src="https://via.placeholder.com/280" alt="Contact">
-                <h3>Kontakt</h3>
-                <p>Kontaktujte nás pre viac informácií.</p>
-                <a href="#" class="card-button">Zisti viac</a>
+                <img src="https://via.placeholder.com/320x200/3b44c6" alt="Contact">
+                <div class="card-content">
+                    <h3>Kontakt</h3>
+                    <p>Rýchly spôsob, ako sa s nami spojiť. Neváhajte nás kontaktovať!</p>
+                    <a href="#" class="card-button">Zisti viac</a>
+                </div>
             </div>
         </div>
 
